@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/shared/Container.astro';
+import Title from '../components/shared/Title.astro';
+import Paragraph from '../components/shared/Paragraph.astro';
+
+const projects = [
+    {
+        title: "مشروع تسويقي لشركة تكنولوجيا",
+        company: "تك سوليوشنز",
+        image: "/images/image1.webp",
+        behanceLink: "https://www.behance.net/project1"
+    },
+    {
+        title: "حملة سوشيال ميديا",
+        company: "فود ديلايت",
+        image: "/images/dev-with-c.webp",
+        behanceLink: "https://www.behance.net/project2"
+    },
+    {
+        title: "هوية بصرية متكاملة",
+        company: "سمارت هوم",
+        image: "/images/dev-with-c-1.webp",
+        behanceLink: "https://www.behance.net/project3"
+    }
+    
+];
+---
+
+<Layout title="مشاريعنا | 4AM Agency">
+    <main class="pt-32">
+        <Container>
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <Title>
+                    أعمالنا
+                </Title>
+                <Paragraph>
+                    نفخر بتقديم مجموعة من أفضل المشاريع التي عملنا عليها. كل مشروع يعكس رؤيتنا الإبداعية وقدرتنا على تحقيق نتائج ملموسة
+                </Paragraph>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                {
+                    projects.map(project => (
+                        <div class="group bg-box-bg border border-box-border shadow-lg shadow-box-shadow rounded-2xl overflow-hidden">
+                            <div class="relative overflow-hidden">
+                                <img src={project.image} alt={project.title} class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-300"/>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-heading-2 mb-2">{project.title}</h3>
+                                <p class="text-heading-3 mb-4">{project.company}</p>
+                                <a href={project.behanceLink} target="_blank" rel="noopener noreferrer" 
+                                   class="inline-flex items-center text-primary hover:text-blue-700 transition-colors">
+                                    عرض المشروع على Behance
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rtl:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </Container>
+    </main>
+</Layout>
