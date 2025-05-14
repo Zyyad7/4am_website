@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/elements/Footer.astro";
 import Navbar from "../components/elements/Navbar.astro";
+import BackgroundShapes from "../components/shared/BackgroundShapes.astro";
 
 export interface Props {
   title: string;
@@ -10,23 +11,71 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-  <head>
+<html lang="ar" dir="rtl">  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Your agency description here">
+    <meta name="description" content="وكالة 4AM - وكالة متخصصة في التسويق الرقمي وإنشاء الهويات البصرية وتطوير المواقع الإلكترونية. نقدم حلولاً إبداعية متكاملة لنمو علامتك التجارية.">
+    <meta name="keywords" content="تسويق رقمي, تصميم, هوية بصرية, سوشيال ميديا, وكالة إعلانية">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="وكالة 4AM - وكالة متخصصة في التسويق الرقمي وإنشاء الهويات البصرية وتطوير المواقع الإلكترونية" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="وكالة متخصصة في التسويق الرقمي وإنشاء الهويات البصرية وتطوير المواقع الإلكترونية" />
     <title>{title}</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Add smooth scrolling and improved typography -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
-  <body class="overflow-hidden overflow-y-auto bg-body font-zawi">
+  <body class="overflow-hidden overflow-y-auto bg-body font-zawi selection:bg-primary/20 selection:text-primary">
+    <!-- Background shapes -->
+    <BackgroundShapes />
+    
+    <!-- Navbar -->
     <Navbar />
+    
+    <!-- Main content -->
     <slot />
+    
+    <!-- Footer -->
     <Footer />
+      <!-- Load AOS animation library -->
+    <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script is:inline>
+      // Initialize AOS animations
+      document.addEventListener('DOMContentLoaded', () => {
+        // Detect if mobile or tablet for adjusting animation settings
+        const isMobile = window.innerWidth < 768;
+        
+        AOS.init({
+          duration: isMobile ? 600 : 800,
+          easing: 'ease-out',
+          once: true,
+          disable: window.innerWidth < 480 // Disable on very small screens for better performance
+        });
+        
+        // Add class for smoother transitions
+        document.body.classList.add('aos-initialized');
+        
+        // Fix for Safari overflow issue
+        setTimeout(() => {
+          document.documentElement.style.overflowX = 'hidden';
+        }, 500);
+      });
+      
+      // Update year in footer
+      const yearElements = document.querySelectorAll('#year');
+      if (yearElements.length > 0) {
+        yearElements.forEach(el => {
+          el.innerText = new Date().getFullYear();
+        });
+      }
+    </script>
   </body>
   <script>
     const switchTheme = document.querySelector(

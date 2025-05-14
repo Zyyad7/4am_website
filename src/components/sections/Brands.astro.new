@@ -72,10 +72,11 @@ const createBrandObject = (id) => ({
         })}
       </div>
     </div>
-      <!-- Main grid of all partners -->
+    
+    <!-- Main grid of all partners -->
     <div class="mt-10">
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-        {gridBrands.map((id, index) => {
+        {gridBrands.slice(0, 12).map((id, index) => {
           const brand = createBrandObject(id);
           return (
             <a 

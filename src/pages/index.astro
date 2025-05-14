@@ -8,13 +8,13 @@ import CTA from '../components/sections/CTA.astro';
 import Brands from '../components/sections/Brands.astro';
 ---
 
-<Layout title="Welcome to AgenceX">
+<Layout title="4AM Agency - وكالة تسويق وتصميم رقمي متكاملة">
 	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
 		<Hero/>
-		<Brands/>
-		<Services/>
+		<Services/>  <!-- What we offer right after hero -->
 		<AboutUs/>
 		<Features/>
+		<Brands/>  <!-- Brands moved below Features -->
 		<CTA/>
 	</main>
 </Layout>
